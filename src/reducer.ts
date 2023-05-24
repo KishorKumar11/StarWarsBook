@@ -1,4 +1,4 @@
-import { Character } from './CharacterTable';
+import { Character } from './favorites';
 
 type Action = {
   type: string;

@@ -7,6 +7,7 @@ interface Character {
     species: { name: string };
     gender: string;
     eyeColor: string;
+    filmConnection: { films: { title: string }[] }
   }
 
 // Action Types
@@ -19,9 +20,3 @@ export const toggleFavorite = (character: Character) => {
     payload: character,
   };
 };
-
-
-
-
-
-

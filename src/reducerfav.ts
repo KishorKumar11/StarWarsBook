@@ -1,4 +1,4 @@
-import { Character } from './CharacterTable'; // Assuming Character interface is defined in the same file
+import { Character } from './favorites'; // Assuming Character interface is defined in the same file
 
 const initialState: Character[] = []; // Initial state is an empty array
 

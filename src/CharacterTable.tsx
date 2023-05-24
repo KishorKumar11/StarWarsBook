@@ -41,26 +41,34 @@ const CharacterTable: React.FC<CharacterTableProps> = ({
   onFilmFilterChange,
 }) => {
   const dispatch = useDispatch();
-  const favoriteCharacters = useSelector((state: RootState) => state.favoriteCharacters);
+  const [favoriteCharacters, setFavoriteCharacters] = useState<Character[]>([]);
 
   const [favoritesOnly, setFavoritesOnly] = useState(false);
   const [selectedCharacter, setSelectedCharacter] = useState<Character | null>(null);
   const [genderFilterValue, setGenderFilterValue] = useState<string | undefined>(genderFilter);
   const [eyeColorFilterValues, setEyeColorFilterValues] = useState<string[]>(eyeColorFilters);
   const [speciesFilterValues, setSpeciesFilterValues] = useState<string[]>(speciesFilters);
-  const [filmFilterValues, setfilmFilterValues] = useState<string[]>(filmFilters);
+  const [filmFilterValues, setFilmFilterValues] = useState<string[]>(filmFilters);
   const [selectedFilmFilter, setSelectedFilmFilter] = useState<string | undefined>(undefined);
 
-
   const handleFavoriteToggle = (character: Character) => {
-    const isFavorite = favoriteCharacters.includes(character);
-    if (isFavorite) {
-      dispatch(toggleFavorite(character));
-    }
+    setFavoriteCharacters((prevFavorites) => {
+      if (prevFavorites.includes(character)) {
+        return prevFavorites.filter((favCharacter) => favCharacter !== character);
+      } else {
+        return [...prevFavorites, character];
+      }
+    });
   };
 
-  const handleRowClick = (record: Character) => {
-    setSelectedCharacter(record);
+  const handleRowClick = (record: Character, event: React.MouseEvent<HTMLElement>) => {
+    // Check if the click target is not the "Add to Favorites" button
+    if (
+      event.target instanceof HTMLElement &&
+      event.target.tagName.toLowerCase() !== 'button'
+    ) {
+      setSelectedCharacter(record);
+    }
   };
 
   const handleCloseModal = () => {
@@ -79,6 +87,13 @@ const CharacterTable: React.FC<CharacterTableProps> = ({
   const speciesFilter = speciesValues.map((species) => ({
     text: species,
     value: species ? species.toLowerCase().replace(/\s+/g, '-') : '',
+  }));
+
+  const filmValues = Array.from(new Set(characters.flatMap((character) => character.filmConnection.films.map((film) => film.title))));
+
+  const filmFilter = filmValues.map((film) => ({
+    text: film,
+    value: film,
   }));
 
   const columns = [
@@ -144,12 +159,12 @@ const CharacterTable: React.FC<CharacterTableProps> = ({
       title: 'Films',
       dataIndex: 'filmConnection',
       key: 'films',
-      filters: filmFilters.map((film) => ({ text: film, value: film })),
+      filters: filmFilter,
       filteredValue: selectedFilmFilter ? [selectedFilmFilter] : undefined,
       onFilter: (value: string | number | boolean, record: Character) =>
-        record.filmConnection.films.some((film) => film.title === value),
+        record.filmConnection.films.some((films) => films.title === value),
       render: (filmConnection: { films: { title: string }[] }) =>
-        filmConnection.films.map((film) => film.title).join(', '),
+        filmConnection.films.map((films) => films.title).join(', '),
     },
     {
       title: 'Action',
@@ -209,17 +224,17 @@ const CharacterTable: React.FC<CharacterTableProps> = ({
           <Button onClick={() => setFavoritesOnly(!favoritesOnly)}>
             {favoritesOnly ? 'Show All Characters' : 'Show Favorites Only'}
           </Button>
-          <Button onClick={() => setSelectedCharacter(null)}>Clear Selection</Button>
+          {/* <Button onClick={() => setSelectedCharacter(null)}>Clear Selection</Button> */}
         </Button.Group>
         <Button.Group style={{ marginLeft: 8 }}>
-          <Button onClick={() => setfilmFilterValues([])}>Clear Films</Button>
-          {/* {filmFilters.map((film) => (
+          {/* <Button onClick={() => setFilmFilterValues([])}>Clear Films</Button> */}
+          {/* {filmFilter.map((film) => (
             <Button
-              key={film}
-              onClick={() => onFilmFilterChange(film)}
-              type={selectedFilmFilter === film ? 'primary' : 'default'}
+              key={film.value}
+              onClick={() => onFilmFilterChange([film.value])}
+              type={selectedFilmFilter === film.value ? 'primary' : 'default'}
             >
-              {film}
+              {film.text}
             </Button>
           ))} */}
         </Button.Group>
@@ -227,9 +242,10 @@ const CharacterTable: React.FC<CharacterTableProps> = ({
       <Table
         columns={columns}
         dataSource={filteredCharacters}
-        onRow={(record) => ({
-          onClick: () => handleRowClick(record),
+        onRow={(record: Character) => ({
+          onClick: (event: React.MouseEvent<HTMLElement>) => handleRowClick(record, event),
         })}
+        
         onChange={onChange}
       />
       {selectedCharacter && (
