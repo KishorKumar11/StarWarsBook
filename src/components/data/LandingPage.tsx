@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useQuery, gql } from '@apollo/client';
-import CharacterTable, { Character } from './CharacterTable';
+import CharacterTable, { Character } from '../ui/CharacterTable';
 
 const GET_CHARACTERS = gql`
   query GetCharacters {
@@ -46,22 +46,6 @@ const LandingPage: React.FC = () => {
     }
   }, [data]);
 
-  const handleGenderFilterChange = (selectedFilter: string) => {
-    setGenderFilter(selectedFilter);
-  };
-
-  const handleEyeColorFilterChange = (selectedFilters: string[]) => {
-    setEyeColorFilters(selectedFilters);
-  };
-
-  const handleSpeciesFilterChange = (selectedFilters: string[]) => {
-    setSpeciesFilters(selectedFilters);
-  };
-
-  const handleFilmFilterChange = (selectedFilters: string[]) => {
-    setFilmFilters(selectedFilters);
-  };
-
   if (loading) {
     return <p>Loading...</p>;
   }
@@ -78,10 +62,6 @@ const LandingPage: React.FC = () => {
         eyeColorFilters={eyeColorFilters}
         speciesFilters={speciesFilters}
         filmFilters={filmFilters}
-        onGenderFilterChange={handleGenderFilterChange}
-        onEyeColorFilterChange={handleEyeColorFilterChange}
-        onSpeciesFilterChange={handleSpeciesFilterChange}
-        onFilmFilterChange={handleFilmFilterChange}
       />
     </div>
   );

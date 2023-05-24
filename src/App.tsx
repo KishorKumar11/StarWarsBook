@@ -2,9 +2,9 @@ import React from 'react';
 import './App.css';
 import { Provider } from 'react-redux';
 import { ApolloClient, InMemoryCache, ApolloProvider, gql } from '@apollo/client';
-import LandingPage from './LandingPage';
+import LandingPage from './components/data/LandingPage';
 import { createStore } from 'redux';
-import reducer from './reducer';
+import reducer from './misc/reducer';
 
 const client = new ApolloClient({
   uri: 'https://swapi-graphql.netlify.app/.netlify/functions/index',

@@ -1,9 +1,6 @@
 import React, { useState } from 'react';
 import { Table, Button, Space, TableProps } from 'antd';
-import { CombinedState } from 'redux';
-import { useDispatch, useSelector } from 'react-redux';
-import { toggleFavorite } from './action';
-import { RootState } from './store';
+import { useDispatch } from 'react-redux';
 import CharacterDetails from './CharacterDetails';
 
 export interface Character {
@@ -23,10 +20,6 @@ export interface CharacterTableProps {
   eyeColorFilters: string[];
   speciesFilters: string[];
   filmFilters: string[];
-  onGenderFilterChange: (selectedFilter: string) => void;
-  onEyeColorFilterChange: (selectedFilters: string[]) => void;
-  onSpeciesFilterChange: (selectedFilters: string[]) => void;
-  onFilmFilterChange: (selectedFilters: string[]) => void;
 }
 
 const CharacterTable: React.FC<CharacterTableProps> = ({
@@ -35,10 +28,6 @@ const CharacterTable: React.FC<CharacterTableProps> = ({
   eyeColorFilters,
   speciesFilters,
   filmFilters,
-  onGenderFilterChange,
-  onEyeColorFilterChange,
-  onSpeciesFilterChange,
-  onFilmFilterChange,
 }) => {
   const dispatch = useDispatch();
   const [favoriteCharacters, setFavoriteCharacters] = useState<Character[]>([]);
