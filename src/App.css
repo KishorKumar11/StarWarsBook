@@ -62,13 +62,13 @@
     font-weight: 400;
     font-family: sans-serif;
     transition: transform 0.3s ease-in-out;
-    background-image: linear-gradient(90deg, #4f474f, #bfaa0d, #c79c31, #f8bc25);
+    background-image: linear-gradient(90deg, #9f9b9f, #bfaa0d, #c79c31, #f8bc25);
     box-shadow: 0 8.80734px 35.2294px #ff1a5b1f;
     outline: #bfaa0d;
 }
 
 .button:hover {
-    opacity: 100%;
+    opacity: 70%;
     animation: bounce 0.5s infinite;
 }
 
