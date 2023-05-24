@@ -16,6 +16,7 @@ const CharacterDetails: React.FC<CharacterDetailsProps> = ({
     return null; // Render null or placeholder when character is null
   }
 
+  // Assigning character properties
   const { name, height, mass, homeworld, species, gender, eyeColor, filmConnection } = character;
 
   return (

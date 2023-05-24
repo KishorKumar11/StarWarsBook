@@ -63,7 +63,7 @@ const CharacterTable: React.FC<CharacterTableProps> = ({
 
   const eyeColorFilter = eyeColorValues.map((color) => ({
     text: color,
-    value: color.toLowerCase().replace(/\s+/g, '-'),
+    value: color.toLowerCase().replace(/\s+/g, '-'), // Used to replace one or more whitespace characters (\s+) with a hyphen (-)
   }));
 
   const speciesValues = Array.from(new Set(characters.map((character) => character.species?.name).filter(Boolean)));
@@ -86,7 +86,9 @@ const CharacterTable: React.FC<CharacterTableProps> = ({
       title: 'Name',
       dataIndex: 'name',
       key: 'name',
-      render: (text: string | null) => text || '-',
+      render: (text: string | null) => (
+        <td style={{ background: '#F0F8FF', borderRadius: 25, padding: 5 }}>{text || '-'}</td>
+      ),
     },
     {
       title: 'Height',
@@ -126,8 +128,12 @@ const CharacterTable: React.FC<CharacterTableProps> = ({
       key: 'eyeColor',
       filters: eyeColorFilter,
       filteredValue: eyeColorFilterValues.length > 0 ? eyeColorFilterValues : undefined,
-      onFilter: (value: string | number | boolean, record: Character) =>
-        record.eyeColor === value.toString(),
+      onFilter: (value: string | number | boolean, record: Character) => {
+        const filterValues = value.toString().split(',').map((val) => val.trim().toLowerCase());
+        return filterValues.some((filterValue) =>
+          record.eyeColor.trim().toLowerCase().includes(filterValue)
+        );
+      },
       render: (text: string | null) => text || '-',
     },
     {
@@ -137,9 +143,9 @@ const CharacterTable: React.FC<CharacterTableProps> = ({
       filters: speciesFilter,
       filteredValue: speciesFilterValues.length > 0 ? speciesFilterValues : undefined,
       onFilter: (value: string | number | boolean, record: Character) =>
-        record.species && record.species.name === value.toString(),     
+        record.species && record.species.name?.toLowerCase().replace(/\s+/g, '-') === value.toString(),
       render: (text: string | null) => text || '-',
-    },
+    },    
     {
       title: 'Films',
       dataIndex: 'filmConnection',
@@ -203,6 +209,11 @@ const CharacterTable: React.FC<CharacterTableProps> = ({
     console.log('params', pagination, filters, sorter, extra);
   };
 
+  // Function to generate row class names for alternate rows
+  const generateRowClassName = (record: Character, index: number): string => {
+    return index % 2 === 0 ? 'even-row' : 'odd-row';
+  };
+
   return (
     <div>
       <Space>
@@ -231,7 +242,7 @@ const CharacterTable: React.FC<CharacterTableProps> = ({
         onRow={(record: Character) => ({
           onClick: (event: React.MouseEvent<HTMLElement>) => handleRowClick(record, event),
         })}
-        
+        rowClassName={generateRowClassName}
         onChange={onChange}
       />
       {selectedCharacter && (
