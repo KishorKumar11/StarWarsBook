@@ -2,24 +2,15 @@ import React, { useState } from 'react';
 import { Table, Button, Space, TableProps } from 'antd';
 import { useDispatch } from 'react-redux';
 import CharacterDetails from './CharacterDetails';
+import { Character } from '../data/OnBoarding';
 
-export interface Character {
-  name: string;
-  height: string;
-  mass: string;
-  homeworld: { name: string };
-  species: { name: string };
-  gender: string;
-  eyeColor: string;
-  filmConnection: { films: { title: string }[] }
-}
-
+// Define props interface for the CharacterTable component
 export interface CharacterTableProps {
-  characters: Character[];
-  genderFilter: string;
-  eyeColorFilters: string[];
-  speciesFilters: string[];
-  filmFilters: string[];
+  characters: Character[]; // Array of characters
+  genderFilter: string; // Selected gender filter value
+  eyeColorFilters: string[]; // Selected eye color filter values
+  speciesFilters: string[]; // Selected species filter values
+  filmFilters: string[]; // Selected film filter values
 }
 
 const CharacterTable: React.FC<CharacterTableProps> = ({
@@ -40,6 +31,7 @@ const CharacterTable: React.FC<CharacterTableProps> = ({
   const [filmFilterValues, setFilmFilterValues] = useState<string[]>(filmFilters);
   const [selectedFilmFilter, setSelectedFilmFilter] = useState<string | undefined>(undefined);
 
+  // Function to handle adding/removing character from favorites
   const handleFavoriteToggle = (character: Character) => {
     setFavoriteCharacters((prevFavorites) => {
       if (prevFavorites.includes(character)) {
@@ -50,6 +42,7 @@ const CharacterTable: React.FC<CharacterTableProps> = ({
     });
   };
 
+  // Function to handle row click and show character details modal
   const handleRowClick = (record: Character, event: React.MouseEvent<HTMLElement>) => {
     // Check if the click target is not the "Add to Favorites" button
     if (
@@ -60,10 +53,12 @@ const CharacterTable: React.FC<CharacterTableProps> = ({
     }
   };
 
+  // Function to close the character details modal
   const handleCloseModal = () => {
     setSelectedCharacter(null);
   };
 
+  // Getting unique filter values and preparing filtering option for the table
   const eyeColorValues = Array.from(new Set(characters.map((character) => character.eyeColor)));
 
   const eyeColorFilter = eyeColorValues.map((color) => ({
@@ -85,6 +80,7 @@ const CharacterTable: React.FC<CharacterTableProps> = ({
     value: film,
   }));
 
+  // Define table columns
   const columns = [
     {
       title: 'Name',
@@ -202,6 +198,7 @@ const CharacterTable: React.FC<CharacterTableProps> = ({
     );
   }
 
+  // Function to handle table onChange event
   const onChange: TableProps<Character>['onChange'] = (pagination, filters, sorter, extra) => {
     console.log('params', pagination, filters, sorter, extra);
   };

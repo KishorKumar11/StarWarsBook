@@ -1,22 +1,13 @@
 import { Button, Modal } from 'antd';
 import React from 'react'
-
-interface Character {
-    name: string;
-    height: string;
-    mass: string;
-    homeworld: { name: string };
-    species: { name: string };
-    gender: string;
-    eyeColor: string;
-    filmConnection: { films: { title: string }[] }
-}
+import { Character } from '../data/OnBoarding';
   
 interface CharacterDetailsProps {
   character: Character | null;
   onClose: () => void;
 }
 
+// CharacterDetails component that renders the details of a character on clicking the character row
 const CharacterDetails: React.FC<CharacterDetailsProps> = ({
   character,
   onClose
@@ -45,6 +36,7 @@ const CharacterDetails: React.FC<CharacterDetailsProps> = ({
       <p>Gender: {gender || '-'}</p>
       <p>Eye color: {eyeColor || '-'}</p>
       <p>Films:</p>
+      {/* To display all related films for the chosen character in the modal */}
       {filmConnection?.films.map((film) => (
         <p key={film.title}>{film.title}</p>
       ))}

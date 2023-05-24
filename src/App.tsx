@@ -2,7 +2,7 @@ import React from 'react';
 import './App.css';
 import { Provider } from 'react-redux';
 import { ApolloClient, InMemoryCache, ApolloProvider, gql } from '@apollo/client';
-import LandingPage from './components/data/LandingPage';
+import LandingPage from './components/data/OnBoarding';
 import { createStore } from 'redux';
 import reducer from './misc/reducer';
 
