@@ -191,19 +191,7 @@ const CharacterTable: React.FC<CharacterTableProps> = ({ characters, genderFilte
             <Space>
                 <Button.Group>
                     <Button onClick={() => setFavoritesOnly(!favoritesOnly)}>{favoritesOnly ? 'Show All Characters' : 'Show Favorites Only'}</Button>
-                    {/* <Button onClick={() => setSelectedCharacter(null)}>Clear Selection</Button> */}
-                </Button.Group>
-                <Button.Group style={{ marginLeft: 8 }}>
-                    {/* <Button onClick={() => setFilmFilterValues([])}>Clear Films</Button> */}
-                    {/* {filmFilter.map((film) => (
-            <Button
-              key={film.value}
-              onClick={() => onFilmFilterChange([film.value])}
-              type={selectedFilmFilter === film.value ? 'primary' : 'default'}
-            >
-              {film.text}
-            </Button>
-          ))} */}
+                    <Button onClick={() => setFavoriteCharacters([])}>Clear Selection</Button>
                 </Button.Group>
             </Space>
             <Table
