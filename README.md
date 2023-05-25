@@ -1,3 +1,5 @@
+A long time ago in a 🌌 galaxy far, far away…
+
 ## Overview
 The code implements a reference book for Star Wars characters using React and the GraphQL endpoint SWAPI. 
 
