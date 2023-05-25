@@ -37,7 +37,14 @@ const speciesFilter = speciesValues.map((species) => ({
 - Cause: Switch is not an exported member of `react-router-dom`
 - Solution: Instead used BrowserRouter, Route, Routes from `react-router-dom`
 
-
+```
+<BrowserRouter>
+    <Routes>
+        <Route path="/" element={<LandingPage />} />
+        <Route path="/onboarding" element={<OnBoarding />} />
+    </Routes>
+</BrowserRouter>
+```
 
 
 ## Future Plans
