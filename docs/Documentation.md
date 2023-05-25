@@ -1,5 +1,3 @@
-May the force be with you ⚫🤖⚔️
-
 ## Problems Encountered
 ### Character Details modal kept popping up even when 'Add to favorites' button was clicked
 - Cause: Since the 'Add to favorites' button was under the 'actions' column of the table, the `handleRowClick` function kept ignoring the button
@@ -40,12 +38,16 @@ const speciesFilter = speciesValues.map((species) => ({
 - Solution: Instead used BrowserRouter, Route, Routes from `react-router-dom`
 
 
+
+
 ## Future Plans
 - Replace 'Add to favorites' button with star icon to enable better user interaction
 - Improve table display UI that matches the Star Wars theme
 - Replace character detail preview modal with pages that include better UI for each character along with their pictures
 - Improve UI of 'Favorites Only' and 'Clear Selection' button
 - Add sliding transition between pages to simulate the "Force" as per the Star Wars theme 
+
+
 
 
 ## Learnings
@@ -60,3 +62,8 @@ Credit (https://github.com/joeythelantern/React-Router-6-Example)
 ### Ant Design has it's own cursor based pagination
 - In the <Table> component, `pagination` attribute can be used (https://ant.design/components/pagination)
 
+        
+        
+        
+        
+        May the force be with you ⚫🤖⚔️
