@@ -3,7 +3,7 @@ import { TransitionGroup, CSSTransition } from 'react-transition-group';
 
 const styles = {
     container: {
-        backgroundImage: `url(${require('../../SWPic.jpg')})`,
+        backgroundImage: `url(${require('../../images/SWPic.jpg')})`,
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         height: '100vh',
