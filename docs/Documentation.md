@@ -39,6 +39,15 @@ const speciesFilter = speciesValues.map((species) => ({
 - Cause: Switch is not an exported member of `react-router-dom`
 - Solution: Instead used BrowserRouter, Route, Routes from `react-router-dom`
 
+
+## Future Plans
+- Replace 'Add to favorites' button with star icon to enable better user interaction
+- Improve table display UI that matches the Star Wars theme
+- Replace character detail preview modal with pages that include better UI for each character along with their pictures
+- Improve UI of 'Favorites Only' and 'Clear Selection' button
+- Add sliding transition between pages to simulate the "Force" as per the Star Wars theme 
+
+
 ## Learnings
 ### Customisable format settings
 - In the settings.json, add the necessary editor settings (formatOnSave, formatOnPsater etc...) and link it to prettier-vscode
@@ -51,9 +60,3 @@ Credit (https://github.com/joeythelantern/React-Router-6-Example)
 ### Ant Design has it's own cursor based pagination
 - In the <Table> component, `pagination` attribute can be used (https://ant.design/components/pagination)
 
-## Future Plans
-- Replace 'Add to favorites' button with star icon to enable better user interaction
-- Improve table display UI that matches the Star Wars theme
-- Replace character detail preview modal with pages that include better UI for each character along with their pictures
-- Improve UI of 'Favorites Only' and 'Clear Selection' button
-- Add sliding transition between pages to simulate the "Force" as per the Star Wars theme 
