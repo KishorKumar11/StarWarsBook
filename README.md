@@ -12,10 +12,10 @@ The code implements a reference book for Star Wars characters using React and th
 
 ## Framework
 
-SWAPI (https://studio.apollographql.com/public/star-wars-swapi/variant/current/home)
-Ant Design (https://ant.design/)
-Apollo Client (https://www.apollographql.com/docs/react/)
-Graphql Codegen (https://the-guild.dev/graphql/codegen/docs/getting-started)
+- SWAPI (https://studio.apollographql.com/public/star-wars-swapi/variant/current/home)
+- Ant Design (https://ant.design/)
+- Apollo Client (https://www.apollographql.com/docs/react/)
+- Graphql Codegen (https://the-guild.dev/graphql/codegen/docs/getting-started)
 
 ## Available Scripts
 
