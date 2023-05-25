@@ -50,11 +50,13 @@
     align-items: center;
     position: absolute;
     bottom: 125px;
+    border: #ffffff;
+    border-width: 15px;
 }
 
 .button {
     font-size: 18px;
-    color: white;
+    color: rgb(40, 40, 40);
     border-radius: 25px;
     padding: 20px;
     cursor: pointer;
@@ -62,9 +64,10 @@
     font-weight: 400;
     font-family: sans-serif;
     transition: transform 0.3s ease-in-out;
-    background-image: linear-gradient(90deg, #9f9b9f, #bfaa0d, #c79c31, #f8bc25);
+    background-image: linear-gradient(90deg, #eb9321, #e7890e, #f59416, #ffb700);
     box-shadow: 0 8.80734px 35.2294px #ff1a5b1f;
-    outline: #bfaa0d;
+    outline: #000000;
+
 }
 
 .button:hover {
