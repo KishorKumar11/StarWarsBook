@@ -1,10 +1,31 @@
-# Getting Started with Create React App
+A long time ago in a 🌌 galaxy far, far away…
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Overview
+The code implements a reference book for Star Wars characters using React and the GraphQL endpoint SWAPI. 
+
+## Features
+
+- A table listing all characters from all movies
+- Cursor based server side pagination
+- Users can mark characters as a favorite character
+- Table filters
+- Display favorites only mode
+- Character details preview mode
+
+## Framework
+
+- SWAPI (https://studio.apollographql.com/public/star-wars-swapi/variant/current/home)
+- Ant Design (https://ant.design/)
+- Apollo Client (https://www.apollographql.com/docs/react/)
+- Graphql Codegen (https://the-guild.dev/graphql/codegen/docs/getting-started)
 
 ## Available Scripts
 
 In the project directory, you can run:
+
+### `npm install`
+
+Installs all the necessary node modules present in the code.
 
 ### `npm start`
 
