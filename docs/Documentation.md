@@ -50,7 +50,6 @@ Credit (https://github.com/joeythelantern/React-Router-6-Example)
 
 ### Ant Design has it's own cursor based pagination
 - In the <Table> component, `pagination` attribute can be used (https://ant.design/components/pagination)
-
         
 ## Future Plans
 - Replace 'Add to favorites' button with star icon to enable better user interaction
